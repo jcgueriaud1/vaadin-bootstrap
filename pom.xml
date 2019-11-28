@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.vaadin.jchristophe</groupId>
+    <artifactId>vaadin-bootstrap-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>vaadin-bootstrap</module>
+        <module>vaadin-bootstrap-demo</module>
+    </modules>
+    <name>Bootstrap layout for Vaadin</name>
+    <description>Add bootstrap theme for Vaadin</description>
+    
+    <properties>
+        <vaadin.version>14.0.14</vaadin.version>
+        <vaadin-bootstrap.version>1.0.0-SNAPSHOT</vaadin-bootstrap.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <organization>
+        <name>Jean-Christophe Gueriaud</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>vaadin-bootstrap</artifactId>
+                <version>${vaadin-bootstrap.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${vaadin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>Vaadin Directory</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <!-- Repository needed for prerelease versions of Vaadin -->
+        <repository>
+            <id>Vaadin prereleases</id>
+            <url>http://maven.vaadin.com/vaadin-prereleases</url>
+        </repository>
+        <!-- Repository needed for the snapshot versions of Vaadin -->
+        <repository>
+            <id>vaadin-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <!-- Repository needed for prerelease versions of Vaadin -->
+        <pluginRepository>
+            <id>Vaadin prereleases</id>
+            <url>http://maven.vaadin.com/vaadin-prereleases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>vaadin-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases><enabled>false</enabled></releases>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
