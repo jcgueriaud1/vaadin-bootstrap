@@ -1,5 +1,5 @@
 //window.Sortable = require("sortablejs/Sortable.js");
-
+/*
 window.Vaadin.Flow.sortableConnector = {
     initLazy: function (customConfig, c, layout) {
         // Check whether the connector was already initialized
@@ -16,7 +16,7 @@ window.Vaadin.Flow.sortableConnector = {
         window.Sortable = require("sortablejs/Sortable.js");
         c.$connector.sortable = Sortable.create(layout, customConfig);
 
-        c.$connector.sortable.options.onEnd = function (/**Event*/evt) {
+        c.$connector.sortable.options.onEnd = function (evt) {
             var itemEl = evt.item;  // dragged HTMLElement
             evt.to;    // target list
             evt.from;  // previous list
@@ -35,4 +35,4 @@ window.Vaadin.Flow.sortableConnector = {
         }
 
     }
-}
+}*/
