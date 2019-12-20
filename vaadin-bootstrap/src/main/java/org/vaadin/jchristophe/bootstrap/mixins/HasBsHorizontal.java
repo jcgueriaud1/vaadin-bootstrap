@@ -1,6 +1,7 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
+import org.vaadin.jchristophe.bootstrap.enums.BsSize;
 
 public interface HasBsHorizontal<T> extends HasStyle {
 
@@ -24,6 +25,10 @@ public interface HasBsHorizontal<T> extends HasStyle {
     }
     default T withHorizontalXl() {
         addClassName(getDefaultClassName() + "-horizontal-xl");
+        return (T) this;
+    }
+    default T withHorizontalSize(BsSize size) {
+        addClassName(getDefaultClassName() + "-horizontal-"+size.buildClassName());
         return (T) this;
     }
 }

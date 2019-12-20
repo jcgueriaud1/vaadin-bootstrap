@@ -1,0 +1,19 @@
+html {
+  /*  --lumo-size-xl: 2.5rem;
+    --lumo-size-l: 1rem;
+    --lumo-size-m: 1.75rem;
+    --lumo-size-s: 1.5rem;
+    --lumo-size-xs: 0.25rem;
+    --lumo-space-xl: 1.75rem;
+    --lumo-space-l: 1.125rem;
+    --lumo-space-m: 0.5rem;
+    --lumo-space-s: 0.25rem;
+    --lumo-space-xs: 0.125rem;*/
+   /* --lumo-border-radius: 0.25; */
+    --lumo-primary-text-color: var(--primary);
+    --lumo-error-text-color: var(--error);
+    --lumo-success-text-color: var(--success);
+    --lumo-primary-color: var(--primary);
+    --lumo-error-color: var(--error);
+    --lumo-success-color: var(--success);
+}

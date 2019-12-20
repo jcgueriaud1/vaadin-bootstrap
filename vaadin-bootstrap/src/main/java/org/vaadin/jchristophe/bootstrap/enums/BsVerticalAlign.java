@@ -1,9 +1,11 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.enums;
 
 public enum BsVerticalAlign {
     START("start"),
     END("end"),
-    CENTER("center");
+    CENTER("center"),
+    BASELINE("baseline"),
+    STRETCH("stretch");
 
     private String align;
 

@@ -1,7 +1,7 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
 import com.vaadin.flow.component.html.Anchor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsColor;
 
 public class BsAnchorBadge extends Anchor implements HasBsColor<BsAnchorBadge> {
 

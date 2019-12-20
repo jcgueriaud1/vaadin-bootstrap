@@ -1,10 +1,9 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
 import com.vaadin.flow.component.html.NativeButton;
-import com.vaadin.flow.component.html.Span;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsOutlineColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsSizeTheme;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsOutlineColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsSizeTheme;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsColor;
 
 public class BsButton extends NativeButton implements HasBsColor<BsButton>, HasBsSizeTheme<BsButton>, HasBsOutlineColor<BsButton> {
 

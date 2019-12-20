@@ -1,4 +1,4 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
 

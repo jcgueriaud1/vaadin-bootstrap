@@ -1,8 +1,6 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.enums;
 
-import org.vaadin.jchristophe.bootstrap.layout.responsive.CssClassName;
-
-public enum BsOffset implements CssClassName {
+public enum BsOffset {
     ALL("offset-"),
     XS("offset-xs-"),
     MD("offset-md-"),
@@ -15,7 +13,6 @@ public enum BsOffset implements CssClassName {
         this.offset = offset;
     }
 
-    @Override
     public String buildClassName(int value) {
         return offset + value;
     }

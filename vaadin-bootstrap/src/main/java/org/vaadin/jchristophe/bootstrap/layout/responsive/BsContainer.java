@@ -1,7 +1,7 @@
 package org.vaadin.jchristophe.bootstrap.layout.responsive;
 
 import com.vaadin.flow.component.html.Div;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsBgColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsBgColor;
 
 public class BsContainer extends Div implements HasBsBgColor<BsContainer> {
 

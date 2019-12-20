@@ -1,7 +1,7 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
 import com.vaadin.flow.component.html.Span;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsColor;
 
 public class BsBadge extends Span implements HasBsColor<BsBadge> {
 

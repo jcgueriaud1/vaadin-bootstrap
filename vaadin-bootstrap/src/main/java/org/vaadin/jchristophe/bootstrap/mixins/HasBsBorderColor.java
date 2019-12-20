@@ -1,6 +1,7 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
+import org.vaadin.jchristophe.bootstrap.enums.BsColor;
 
 public interface HasBsBorderColor<T> extends HasStyle {
 
@@ -35,6 +36,14 @@ public interface HasBsBorderColor<T> extends HasStyle {
     }
     default T withBorderDark() {
         addClassName("border-dark");
+        return (T) this;
+    }
+    default T withBorderColor(BsColor color) {
+        addClassName("border-" + color.buildClassName());
+        return (T) this;
+    }
+    default T withBorder() {
+        addClassName("border");
         return (T) this;
     }
 }

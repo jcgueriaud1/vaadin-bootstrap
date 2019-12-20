@@ -1,8 +1,10 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
+import org.vaadin.jchristophe.bootstrap.enums.BsColor;
+import org.vaadin.jchristophe.bootstrap.utils.ColorUtil;
 
-public interface HasBsBgColor<T> extends HasStyle {
+public interface HasBsBgColor<T extends HasBsBgColor<T>> extends HasStyle {
 
     default T withBgPrimary() {
         addClassName("bg-primary");
@@ -36,5 +38,8 @@ public interface HasBsBgColor<T> extends HasStyle {
     default T withBgDark() {
         addClassName("bg-dark");
         return (T) this;
+    }
+    default T withBgColor(BsColor color) {
+        return ColorUtil.withBgColor((T) this, color);
     }
 }

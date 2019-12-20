@@ -1,6 +1,7 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
+import org.vaadin.jchristophe.bootstrap.enums.BsSize;
 
 public interface HasBsSizeTheme<T> extends HasStyle {
 
@@ -13,6 +14,11 @@ public interface HasBsSizeTheme<T> extends HasStyle {
 
     default T withLg() {
         addClassName(getDefaultClassName() + "-lg");
+        return (T) this;
+    }
+
+    default T withSize(BsSize size) {
+        addClassName(getDefaultClassName() + "-" + size.buildClassName());
         return (T) this;
     }
 }

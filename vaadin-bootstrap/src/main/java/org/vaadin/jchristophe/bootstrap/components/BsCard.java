@@ -1,11 +1,10 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H5;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsBgColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsBorderColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsTextAlign;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsTextColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsBgColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsBorderColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsTextAlign;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsTextColor;
 
 public class BsCard extends Div implements HasBsTextColor<BsCard>, HasBsTextAlign<BsCard>, HasBsBgColor<BsCard>, HasBsBorderColor<BsCard> {
 

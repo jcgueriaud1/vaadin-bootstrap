@@ -1,4 +1,4 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.enums;
 
 public enum BsHorizontalAlign {
     START("start"),

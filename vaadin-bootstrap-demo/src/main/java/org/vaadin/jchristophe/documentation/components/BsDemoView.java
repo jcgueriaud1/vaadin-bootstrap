@@ -32,7 +32,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-//
+
 //@StyleSheet("https://use.fontawesome.com/releases/v5.8.2/css/all.css")
 //@StyleSheet("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css")
 //@StyleSheet("https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css")
@@ -40,6 +40,11 @@ import java.util.function.Supplier;
 //@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js")
 //@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js")
 //@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js")
+
+//@StyleSheet("https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/css/coreui.min.css")
+//@JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
+//@JavaScript("https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/js/coreui.min.js")
+//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js")
 
 @Tag("div")
 @StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
@@ -129,6 +134,7 @@ public abstract class BsDemoView extends Component
         navBar.addNavLink(new RouterLink("Collapse", CollapseExample.class));
         navBar.addNavLink(new RouterLink("NavBar", NavBarExample.class));
         navBar.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));
+        navBar.addNavLink(new RouterLink("Form", FormExample.class));
         navBar.addNavLink(new RouterLink("Grid", GridExample.class));
         navBar.withNavBrandText("BootstrapDocs");
         add(navBar);

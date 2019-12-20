@@ -1,8 +1,8 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
 import com.vaadin.flow.component.html.ListItem;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsState;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsState;
 
 public class BsListItem extends ListItem implements HasBsState<BsListItem>, HasBsColor<BsListItem> {
 

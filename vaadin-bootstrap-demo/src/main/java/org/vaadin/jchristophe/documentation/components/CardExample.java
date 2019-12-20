@@ -69,4 +69,5 @@ public class CardExample extends BsDemoView {
 
         addCard("Center Example", card, message);
     }
+
 }

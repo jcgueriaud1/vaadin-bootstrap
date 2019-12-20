@@ -1,6 +1,7 @@
-package org.vaadin.jchristophe.bootstrap.utils;
+package org.vaadin.jchristophe.bootstrap.mixins;
 
 import com.vaadin.flow.component.HasStyle;
+import org.vaadin.jchristophe.bootstrap.enums.BsColor;
 
 public interface HasBsOutlineColor<T> extends HasStyle {
 
@@ -41,6 +42,10 @@ public interface HasBsOutlineColor<T> extends HasStyle {
     }
     default T withOutlineDark() {
         addClassName(getOutlineClassName() + "-dark");
+        return (T) this;
+    }
+    default T withOutlineColor(BsColor color) {
+        addClassName(getOutlineClassName() + "-" + color.buildClassName());
         return (T) this;
     }
 }

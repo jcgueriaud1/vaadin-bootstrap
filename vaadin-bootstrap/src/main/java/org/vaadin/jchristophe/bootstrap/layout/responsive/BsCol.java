@@ -1,9 +1,13 @@
 package org.vaadin.jchristophe.bootstrap.layout.responsive;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Div;
-import org.vaadin.jchristophe.bootstrap.utils.BsVerticalAlign;
-import org.vaadin.jchristophe.bootstrap.utils.BsOffset;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsBgColor;
+import com.vaadin.flow.dom.ElementConstants;
+import org.vaadin.jchristophe.bootstrap.enums.BsColSize;
+import org.vaadin.jchristophe.bootstrap.enums.BsVerticalAlign;
+import org.vaadin.jchristophe.bootstrap.enums.BsOffset;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsBgColor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +19,11 @@ public class BsCol extends Div implements HasBsBgColor<BsCol> {
 
     public BsCol() {
 
+    }
+
+    public void addFullWidth(Component component) {
+        component.getElement().getStyle().set(ElementConstants.STYLE_WIDTH, "100%");
+        add(component);
     }
 
     public BsCol withAutoSize() {
@@ -52,20 +61,20 @@ public class BsCol extends Div implements HasBsBgColor<BsCol> {
         return withSize(BsColSize.ALL, all);
     }
 
-    public BsCol withSizes(int all, int xs) {
+    public BsCol withSizes(int all, int sm) {
         return withSizes(all)
-                .withSize(BsColSize.XS, xs);
+                .withSize(BsColSize.SM, sm);
     }
-    public BsCol withSizes(int all, int xs, int md) {
-        return withSizes(all, xs)
+    public BsCol withSizes(int all, int sm, int md) {
+        return withSizes(all, sm)
                 .withSize(BsColSize.MD, md);
     }
-    public BsCol withSizes(int all, int xs, int md, int lg) {
-        return withSizes(all, xs, md)
+    public BsCol withSizes(int all, int sm, int md, int lg) {
+        return withSizes(all, sm, md)
                 .withSize(BsColSize.LG, lg);
     }
-    public BsCol withSizes(int all, int xs, int md, int lg, int xl) {
-        return withSizes(all, xs, md, lg)
+    public BsCol withSizes(int all, int sm, int md, int lg, int xl) {
+        return withSizes(all, sm, md, lg)
                 .withSize(BsColSize.XL, xl);
     }
 

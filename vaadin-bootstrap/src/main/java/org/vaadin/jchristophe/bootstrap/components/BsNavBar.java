@@ -1,17 +1,13 @@
 package org.vaadin.jchristophe.bootstrap.components;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.RouterLink;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsBgColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsColor;
-import org.vaadin.jchristophe.bootstrap.utils.HasBsTextColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsBgColor;
+import org.vaadin.jchristophe.bootstrap.mixins.HasBsColor;
 
 public class BsNavBar extends Nav implements HasBsColor<BsNavBar>, HasBsBgColor<BsNavBar> {
 
