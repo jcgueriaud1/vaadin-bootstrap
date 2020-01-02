@@ -1,9 +1,7 @@
 package org.vaadin.jchristophe.documentation.components;
 
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
-import org.vaadin.jchristophe.BootstrapLayout;
 import org.vaadin.jchristophe.bootstrap.components.BsButton;
 
 @Route(value ="button")//, layout = BootstrapLayout.class)

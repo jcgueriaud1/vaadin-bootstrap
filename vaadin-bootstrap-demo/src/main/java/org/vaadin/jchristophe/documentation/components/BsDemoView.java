@@ -1,36 +1,36 @@
 package org.vaadin.jchristophe.documentation.components;
 
-import com.vaadin.flow.component.AttachEvent;
+import com.github.appreciated.demo.helper.DemoHelperView;
+import com.github.appreciated.demo.helper.entity.CodeExample;
+import com.github.appreciated.prism.element.Language;
+import com.github.appreciated.prism.element.PrismHighlighter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.HasTheme;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.NativeButton;
-import com.vaadin.flow.demo.Card;
-import com.vaadin.flow.demo.DemoNavigationBar;
-import com.vaadin.flow.demo.DemoView;
-import com.vaadin.flow.demo.SourceCodeExample;
-import com.vaadin.flow.demo.SourceContent;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.OptionalParameter;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.RouterLink;
+import org.vaadin.jchristophe.bootstrap.components.BsButton;
+import org.vaadin.jchristophe.bootstrap.components.BsCard;
 import org.vaadin.jchristophe.bootstrap.components.BsNavBar;
+import org.vaadin.jchristophe.bootstrap.enums.BsColor;
+import org.vaadin.jchristophe.bootstrap.enums.BsPosition;
+import org.vaadin.jchristophe.bootstrap.layout.responsive.BsCol;
+import org.vaadin.jchristophe.bootstrap.layout.responsive.BsContainer;
+import org.vaadin.jchristophe.bootstrap.layout.responsive.BsRow;
+import org.vaadin.jchristophe.bootstrap.utils.SpacingUtil;
+import org.vaadin.jchristophe.util.GraniteButton;
+import org.vaadin.jchristophe.util.SourceCodeExample;
 import org.vaadin.jchristophe.util.SourceContentResolver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 
 //@StyleSheet("https://use.fontawesome.com/releases/v5.8.2/css/all.css")
@@ -47,15 +47,19 @@ import java.util.function.Supplier;
 //@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js")
 
 @Tag("div")
+
+@CssImport("./demo.css")
 @StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
 @JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
 @JavaScript("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
 @JavaScript("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
-public abstract class BsDemoView extends Component
+public abstract class BsDemoView extends DemoHelperView /*extends Component*/
         implements HasComponents, HasStyle {
 
-    private BsNavBar navBar;
-    private final Div container = new Div();
+    private BsNavBar mainNavigation;
+    private final BsContainer container = new BsContainer(true);
+
+    private final List<Component> codes = new ArrayList<>();
 
     private final Map<String, List<SourceCodeExample>> sourceCodeExamples = new HashMap<>();
 
@@ -75,39 +79,58 @@ public abstract class BsDemoView extends Component
         list.add(example);
     }
 
-    protected Card addCard(String heading,
-                         Component... components) {
-        Card card = new Card();
-        if (components != null && components.length > 0) {
-            card.add(components);
-        }
+    protected BsCard addCard(String heading,
+                             Component component, Component message) {
+        BsCard card = new BsCard();
+        SpacingUtil.withMargin(card,BsPosition.BOTTOM,2);
+        BsRow headerRow = new BsRow();
+        headerRow.addCol().withEqualSize().add(new Span(heading));
+        card.getCardHeader().add(headerRow);
+        card.getCardHeader().setVisible(true);
+        BsRow bsRow = new BsRow();
+
+        card.add(bsRow);
+        bsRow.addCol().withEqualSize().add(component);
 
         List<SourceCodeExample> list = sourceCodeExamples.get(heading);
         if (list != null) {
-            list.stream().map(this::createSourceContent).forEach(card::add);
-        }
+            list.stream().map(this::createSourceContent).forEach(codeExample -> {
+                PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getCode(), codeExample.getHighlightingType());
+                BsCol bsCol = bsRow.addCol().withSizes(12, 6).withBgColor(BsColor.LIGHT);
+                bsCol.add(prismHighlighter);
+                codes.add(bsCol);
 
+                GraniteButton graniteButton = new GraniteButton("Copy code");
+                graniteButton.withColor(BsColor.PRIMARY);
+                graniteButton.setClipboard(codeExample.getCode());
+                graniteButton.withSm();
+
+                BsButton hideCodeButton = new BsButton("Show/Hide code").withColor(BsColor.PRIMARY);
+                hideCodeButton.withSm();
+                hideCodeButton.addClickListener(event -> {
+                    boolean highlighterVisible = bsCol.isVisible();
+                    codes.forEach(code ->
+                                code.setVisible(!highlighterVisible)
+                    );
+                });
+                SpacingUtil.withMargin(hideCodeButton, BsPosition.RIGHT,2);
+                headerRow.addCol().withAutoSize().add(new Div(hideCodeButton , graniteButton));
+            });
+        }
         container.add(card);
         return card;
     }
 
-    private SourceContent createSourceContent(
+    private CodeExample createSourceContent(
             SourceCodeExample sourceCodeExample) {
-        SourceContent content = new SourceContent();
+        CodeExample content;
         String sourceString = sourceCodeExample.getSourceCode();
         switch (sourceCodeExample.getSourceType()) {
             case CSS:
-                content.addCss(sourceString);
+                content = new CodeExample(sourceString, Language.css, "css");
                 break;
-            case JAVA:
-                content.addCode(sourceString);
-                break;
-            case HTML:
-                content.addHtml(sourceString);
-                break;
-            case UNDEFINED:
             default:
-                content.addCode(sourceString);
+                content = new CodeExample(sourceString, Language.java, "Java");
                 break;
         }
         return content;
@@ -119,6 +142,7 @@ public abstract class BsDemoView extends Component
 
         populateSources();
         initView();
+        getElement().getStyle().clear();
     }
 
     protected void initView() {
@@ -127,17 +151,17 @@ public abstract class BsDemoView extends Component
 
 
     private void createNavBar() {
-        navBar = new BsNavBar("mainNav").withNavBarDark().withBgDark();
-        navBar.addNavLink(new RouterLink("Badge", BadgeExample.class));
-        navBar.addNavLink(new RouterLink("Buttons", ButtonExample.class));
-        navBar.addNavLink(new RouterLink("Card", CardExample.class));
-        navBar.addNavLink(new RouterLink("Collapse", CollapseExample.class));
-        navBar.addNavLink(new RouterLink("NavBar", NavBarExample.class));
-        navBar.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));
-        navBar.addNavLink(new RouterLink("Form", FormExample.class));
-        navBar.addNavLink(new RouterLink("Grid", GridExample.class));
-        navBar.withNavBrandText("BootstrapDocs");
-        add(navBar);
+        mainNavigation = new BsNavBar("mainNav").withNavBarDark().withBgDark().withStickyTop();
+        mainNavigation.addNavLink(new RouterLink("Badge", BadgeExample.class));
+        mainNavigation.addNavLink(new RouterLink("Buttons", ButtonExample.class));
+        mainNavigation.addNavLink(new RouterLink("Card", CardExample.class));
+        mainNavigation.addNavLink(new RouterLink("Collapse", CollapseExample.class));
+        mainNavigation.addNavLink(new RouterLink("NavBar", NavBarExample.class));
+        mainNavigation.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));
+        mainNavigation.addNavLink(new RouterLink("Form", FormExample.class));
+        mainNavigation.addNavLink(new RouterLink("Grid", GridExample.class));
+        mainNavigation.withNavBrandText("BootstrapDocs");
+        add(mainNavigation);
     }
 
     protected Div createMessageDiv(String id) {

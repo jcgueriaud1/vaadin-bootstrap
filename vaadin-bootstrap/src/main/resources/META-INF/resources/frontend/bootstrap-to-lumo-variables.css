@@ -17,3 +17,8 @@ html {
     --lumo-error-color: var(--error);
     --lumo-success-color: var(--success);
 }
+
+
+body {
+    width: 100%;
+}

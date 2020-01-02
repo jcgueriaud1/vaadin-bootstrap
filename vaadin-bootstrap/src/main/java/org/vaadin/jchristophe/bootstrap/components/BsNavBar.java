@@ -72,4 +72,20 @@ public class BsNavBar extends Nav implements HasBsColor<BsNavBar>, HasBsBgColor<
     public String getDefaultClassName() {
         return "navbar";
     }
+
+
+    public BsNavBar withStickyTop() {
+        addClassName("sticky-top");
+        return this;
+    }
+
+    public BsNavBar withFixedBottom() {
+        addClassName("fixed-bottom");
+        return this;
+    }
+
+    public BsNavBar withFixedTop() {
+        addClassName("fixed-top");
+        return this;
+    }
 }

@@ -1,12 +1,11 @@
 package org.vaadin.jchristophe.bootstrap.layout.responsive;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.dom.ElementConstants;
 import org.vaadin.jchristophe.bootstrap.enums.BsColSize;
-import org.vaadin.jchristophe.bootstrap.enums.BsVerticalAlign;
 import org.vaadin.jchristophe.bootstrap.enums.BsOffset;
+import org.vaadin.jchristophe.bootstrap.enums.BsVerticalAlign;
 import org.vaadin.jchristophe.bootstrap.mixins.HasBsBgColor;
 
 import java.util.HashMap;
@@ -27,7 +26,26 @@ public class BsCol extends Div implements HasBsBgColor<BsCol> {
     }
 
     public BsCol withAutoSize() {
+        addClassName("col-auto");
+        return this;
+    }
+
+    public BsCol withEqualSize() {
         addClassName("col");
+        return this;
+    }
+
+    public BsCol withEqualSize(BsColSize size) {
+        clearSize(size);
+        sizes.put(size, 0);
+        addClassName(size.buildClassName());
+        return this;
+    }
+
+    public BsCol withAutoSize(BsColSize size) {
+        clearSize(size);
+        sizes.put(size, -1);
+        addClassName(size.buildClassName()+"-auto");
         return this;
     }
 

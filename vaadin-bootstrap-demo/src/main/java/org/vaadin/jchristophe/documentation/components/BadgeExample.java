@@ -2,7 +2,6 @@ package org.vaadin.jchristophe.documentation.components;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
-import org.vaadin.jchristophe.BootstrapLayout;
 import org.vaadin.jchristophe.bootstrap.components.BsBadge;
 
 @Route(value ="badge")

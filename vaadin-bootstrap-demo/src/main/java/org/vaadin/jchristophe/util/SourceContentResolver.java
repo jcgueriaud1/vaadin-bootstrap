@@ -1,5 +1,7 @@
 package org.vaadin.jchristophe.util;
 
+import org.vaadin.jchristophe.documentation.components.BsDemoView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,10 +15,6 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import com.vaadin.flow.demo.SourceCodeExample;
-import com.vaadin.flow.demo.SourceCodeExample.SourceType;
-import org.vaadin.jchristophe.documentation.components.BsDemoView;
 
 /**
  * Utility class for obtaining {@link SourceCodeExample}s for classes.
@@ -131,9 +129,9 @@ public class SourceContentResolver {
         String heading = parseValueFromPattern(sourceLines,
                 SOURCE_CODE_EXAMPLE_HEADING_PATTERN, Function.identity(),
                 () -> null);
-        SourceType sourceType = parseValueFromPattern(sourceLines,
-                SOURCE_CODE_EXAMPLE_TYPE_PATTERN, SourceType::valueOf,
-                () -> SourceType.UNDEFINED);
+        SourceCodeExample.SourceType sourceType = parseValueFromPattern(sourceLines,
+                SOURCE_CODE_EXAMPLE_TYPE_PATTERN, SourceCodeExample.SourceType::valueOf,
+                () -> SourceCodeExample.SourceType.UNDEFINED);
 
         SourceCodeExample example = new SourceCodeExample();
         example.setHeading(heading);
