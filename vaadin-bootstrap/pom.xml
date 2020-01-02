@@ -10,7 +10,7 @@
 
     <name>vaadin-bootstrap</name>
     <parent>
-        <groupId>org.vaadin.jchristophe</groupId>
+        <groupId>org.vaadin.boostrapcss</groupId>
         <artifactId>vaadin-bootstrap-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
