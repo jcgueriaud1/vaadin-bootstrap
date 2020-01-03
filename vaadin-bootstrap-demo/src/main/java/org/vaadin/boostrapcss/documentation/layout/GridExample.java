@@ -5,7 +5,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.demo.BsDemoView;
-import org.vaadin.boostrapcss.enums.BsColResponsiveBP;
+import org.vaadin.boostrapcss.enums.BsResponsiveBP;
 import org.vaadin.boostrapcss.enums.BsVerticalAlign;
 import org.vaadin.boostrapcss.layout.responsive.BsContainer;
 import org.vaadin.boostrapcss.layout.responsive.BsRow;
@@ -37,9 +37,9 @@ public class GridExample extends BsDemoView {
         BsContainer container = new BsContainer();
         container.addClassName("bd-example-row");
         BsRow row1 = container.addRow();
-        row1.addCol().withEqualSize(BsColResponsiveBP.MD).add(new Text("One of three columns"));
-        row1.addCol().withEqualSize(BsColResponsiveBP.MD).add(new Text("One of three columns"));
-        row1.addCol().withEqualSize(BsColResponsiveBP.MD).add(new Text("One of three columns"));
+        row1.addCol().withEqualSize(BsResponsiveBP.MD).add(new Text("One of three columns"));
+        row1.addCol().withEqualSize(BsResponsiveBP.MD).add(new Text("One of three columns"));
+        row1.addCol().withEqualSize(BsResponsiveBP.MD).add(new Text("One of three columns"));
         // end-source-example
 
         addCodeExample("Basic Example", container, message);

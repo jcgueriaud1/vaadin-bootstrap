@@ -9,3 +9,10 @@
 .bd-example-row .row+.row {
     margin-top: 1rem;
 }
+
+.bd-example-col div {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: rgba(86,61,124,.15);
+    margin-left: 0.25rem;
+}

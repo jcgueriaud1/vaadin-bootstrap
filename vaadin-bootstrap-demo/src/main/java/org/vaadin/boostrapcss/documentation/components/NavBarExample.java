@@ -5,6 +5,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import org.vaadin.boostrapcss.components.BsNavBar;
 import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = NavBarExample.CURRENT_URL)
 public class NavBarExample extends BsDemoView {
@@ -25,7 +26,7 @@ public class NavBarExample extends BsDemoView {
         message.setText("Default configuration for navBar");
         // begin-source-example
         // source-example-heading: Basic Example
-        BsNavBar navBar = new BsNavBar("mainNavExample").withNavBarDark().withBgDark();
+        BsNavBar navBar = new BsNavBar("mainNavExample").withNavBarDark().withBgColor(BsColor.DARK);
         navBar.addNavLink(new RouterLink("NavBar", NavBarExample.class));
         navBar.addNavLink(new RouterLink("Card", CardExample.class));
         navBar.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));

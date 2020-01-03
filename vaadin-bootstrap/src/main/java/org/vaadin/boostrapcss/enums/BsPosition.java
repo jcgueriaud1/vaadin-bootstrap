@@ -9,24 +9,24 @@ public enum BsPosition implements CssClassName {
     VERTICAL("y"),
     HORIZONTAL("x");
 
-    private String size;
+    private String position;
 
-    BsPosition(final String size) {
-        this.size = size;
+    BsPosition(final String position) {
+        this.position = position;
     }
 
     @Override
     public String buildClassName(int value) {
-        return size + "-" + value;
+        return position + "-" + value;
     }
 
     @Override
     public String buildClassName() {
-        return size;
+        return position;
     }
 
     public String buildClassName(BsResponsiveBP responsiveBP, int value) {
-        return size + "-" + responsiveBP.buildClassName(value);
+        return position + "-" + responsiveBP.buildClassName(value);
     }
 
 }

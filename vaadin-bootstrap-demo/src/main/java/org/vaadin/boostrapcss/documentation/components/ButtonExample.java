@@ -4,6 +4,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = ButtonExample.CURRENT_URL)
 public class ButtonExample extends BsDemoView {
@@ -28,14 +29,14 @@ public class ButtonExample extends BsDemoView {
         // begin-source-example
         // source-example-heading: Basic Example
         Div layout = new Div();
-        layout.add(new BsButton("Primary").withPrimary());
-        layout.add(new BsButton("Secondary").withSecondary());
-        layout.add(new BsButton("Success").withSuccess());
-        layout.add(new BsButton("Danger").withDanger());
-        layout.add(new BsButton("Warning").withWarning());
-        layout.add(new BsButton("Info").withInfo());
-        layout.add(new BsButton("Light").withLight());
-        layout.add(new BsButton("Dark").withDark());
+        layout.add(new BsButton("Primary").withColor(BsColor.PRIMARY));
+        layout.add(new BsButton("Secondary").withColor(BsColor.SECONDARY));
+        layout.add(new BsButton("Success").withColor(BsColor.SUCCESS));
+        layout.add(new BsButton("Danger").withColor(BsColor.DANGER));
+        layout.add(new BsButton("Warning").withColor(BsColor.WARNING));
+        layout.add(new BsButton("Info").withColor(BsColor.INFO));
+        layout.add(new BsButton("Light").withColor(BsColor.LIGHT));
+        layout.add(new BsButton("Dark").withColor(BsColor.DARK));
         layout.add(new BsButton("Link").withLink());
         // end-source-example
 
@@ -48,14 +49,14 @@ public class ButtonExample extends BsDemoView {
         // begin-source-example
         // source-example-heading: Outline Example
         Div layout = new Div();
-        layout.add(new BsButton("Primary").withOutlinePrimary());
-        layout.add(new BsButton("Secondary").withOutlineSecondary());
-        layout.add(new BsButton("Success").withOutlineSuccess());
-        layout.add(new BsButton("Danger").withOutlineDanger());
-        layout.add(new BsButton("Warning").withOutlineWarning());
-        layout.add(new BsButton("Info").withOutlineInfo());
-        layout.add(new BsButton("Light").withOutlineLight());
-        layout.add(new BsButton("Dark").withOutlineDark());
+        layout.add(new BsButton("Primary").withOutlineColor(BsColor.PRIMARY));
+        layout.add(new BsButton("Secondary").withOutlineColor(BsColor.SECONDARY));
+        layout.add(new BsButton("Success").withOutlineColor(BsColor.SUCCESS));
+        layout.add(new BsButton("Danger").withOutlineColor(BsColor.DANGER));
+        layout.add(new BsButton("Warning").withOutlineColor(BsColor.WARNING));
+        layout.add(new BsButton("Info").withOutlineColor(BsColor.INFO));
+        layout.add(new BsButton("Light").withOutlineColor(BsColor.LIGHT));
+        layout.add(new BsButton("Dark").withOutlineColor(BsColor.DARK));
         // end-source-example
 
         addCodeExample("Outline Example", layout, message);
@@ -67,8 +68,8 @@ public class ButtonExample extends BsDemoView {
         // begin-source-example
         // source-example-heading: Size Example
         Div layout = new Div();
-        layout.add(new BsButton("Lg").withPrimary().withLg());
-        layout.add(new BsButton("Sm").withSecondary().withSm());
+        layout.add(new BsButton("Lg").withColor(BsColor.PRIMARY).withLg());
+        layout.add(new BsButton("Sm").withColor(BsColor.SECONDARY).withSm());
         // end-source-example
 
         addCodeExample("Size Example", layout, message);

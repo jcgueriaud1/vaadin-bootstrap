@@ -24,7 +24,12 @@ public enum BsColor {
     public String buildBgClassName() {
         return "bg-"+color;
     }
+
     public String buildTextClassName() {
         return "text-"+color;
+    }
+
+    public String buildBorderClassName() {
+        return "border-"+color;
     }
 }

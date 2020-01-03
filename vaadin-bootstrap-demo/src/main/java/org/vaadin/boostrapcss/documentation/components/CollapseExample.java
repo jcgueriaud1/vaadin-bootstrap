@@ -5,8 +5,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsCard;
-import org.vaadin.boostrapcss.utils.CollapsibleUtil;
 import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.enums.BsColor;
+import org.vaadin.boostrapcss.utils.CollapsibleUtil;
 
 @Route(value = CollapseExample.CURRENT_URL)
 public class CollapseExample extends BsDemoView {
@@ -31,7 +32,7 @@ public class CollapseExample extends BsDemoView {
 
         // begin-source-example
         // source-example-heading: Basic Example
-        BsButton button = new BsButton("Collapse").withPrimary();
+        BsButton button = new BsButton("Collapse").withColor(BsColor.PRIMARY);
         Div collapsibleLayout = new Div();
         collapsibleLayout.add(new Text("collapsible"));
         CollapsibleUtil.addCollapsible(button, collapsibleLayout);

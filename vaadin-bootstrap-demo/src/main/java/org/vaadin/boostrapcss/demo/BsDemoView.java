@@ -21,16 +21,22 @@ import org.vaadin.boostrapcss.components.BsParagraph;
 import org.vaadin.boostrapcss.demo.util.GraniteButton;
 import org.vaadin.boostrapcss.demo.util.SourceCodeExample;
 import org.vaadin.boostrapcss.demo.util.SourceContentResolver;
+import org.vaadin.boostrapcss.documentation.HomeExample;
+import org.vaadin.boostrapcss.documentation.components.AlertExample;
 import org.vaadin.boostrapcss.documentation.components.BadgeExample;
+import org.vaadin.boostrapcss.documentation.components.BreadcrumbExample;
 import org.vaadin.boostrapcss.documentation.components.ButtonExample;
 import org.vaadin.boostrapcss.documentation.components.ButtonGroupExample;
 import org.vaadin.boostrapcss.documentation.components.CardExample;
 import org.vaadin.boostrapcss.documentation.components.CollapseExample;
+import org.vaadin.boostrapcss.documentation.components.DropdownExample;
 import org.vaadin.boostrapcss.documentation.components.FormExample;
 import org.vaadin.boostrapcss.documentation.components.ListGroupExample;
 import org.vaadin.boostrapcss.documentation.components.NavBarExample;
 import org.vaadin.boostrapcss.documentation.layout.GridExample;
+import org.vaadin.boostrapcss.documentation.utilities.BorderExample;
 import org.vaadin.boostrapcss.documentation.utilities.ColorExample;
+import org.vaadin.boostrapcss.documentation.utilities.DisplayExample;
 import org.vaadin.boostrapcss.documentation.utilities.SpacingExample;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
@@ -176,7 +182,7 @@ public abstract class BsDemoView extends DemoHelperView {
             footer.add(container);
             footer.withFixedBottom();
             SpacingUtil.withPadding(footer,BsPosition.VERTICAL,2);
-            footer.withBgInfo();
+            footer.withBgColor(BsColor.INFO);
             add(footer);
         }
     }
@@ -186,18 +192,24 @@ public abstract class BsDemoView extends DemoHelperView {
     }
 
     private void createNavBar() {
-        mainNavigation = new BsNavBar("mainNav").withNavBarDark().withBgDark().withStickyTop();
+        mainNavigation = new BsNavBar("mainNav").withNavBarDark().withBgColor(BsColor.DARK).withStickyTop();
+        mainNavigation.addNavLink(new RouterLink("Home", HomeExample.class));
+        mainNavigation.addNavLink(new RouterLink("Alerts", AlertExample.class));
         mainNavigation.addNavLink(new RouterLink("Badge", BadgeExample.class));
+        mainNavigation.addNavLink(new RouterLink("Breadcrumb", BreadcrumbExample.class));
         mainNavigation.addNavLink(new RouterLink("Buttons", ButtonExample.class));
         mainNavigation.addNavLink(new RouterLink("Button Group", ButtonGroupExample.class));
         mainNavigation.addNavLink(new RouterLink("Card", CardExample.class));
         mainNavigation.addNavLink(new RouterLink("Collapse", CollapseExample.class));
+        mainNavigation.addNavLink(new RouterLink("Dropdown", DropdownExample.class));
         mainNavigation.addNavLink(new RouterLink("NavBar", NavBarExample.class));
         mainNavigation.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));
         mainNavigation.addNavLink(new RouterLink("Form", FormExample.class));
         mainNavigation.addNavLink(new RouterLink("Grid", GridExample.class));
         mainNavigation.addNavLink(new RouterLink("Color", ColorExample.class));
         mainNavigation.addNavLink(new RouterLink("Spacing", SpacingExample.class));
+        mainNavigation.addNavLink(new RouterLink("Display", DisplayExample.class));
+        mainNavigation.addNavLink(new RouterLink("Borders", BorderExample.class));
         mainNavigation.withNavBrandText("BootstrapDocs");
         add(mainNavigation);
     }

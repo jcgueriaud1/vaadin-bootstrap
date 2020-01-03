@@ -5,6 +5,7 @@ import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = CardExample.CURRENT_URL)
 public class CardExample extends BsDemoView {
@@ -30,14 +31,14 @@ public class CardExample extends BsDemoView {
         // source-example-heading: Color Example
         BsCard card = new BsCard();
         card.setCardHeaderText("Featured");
-        card.getCardHeader().withBgPrimary();
+        card.getCardHeader().withBgColor(BsColor.PRIMARY);
         card.setCardTitleText("Special title treatment");
         card.setCardText("With supporting text below as a natural lead-in to additional content.");
-        card.getCardBody().withTextPrimary();
-        BsButton button = new BsButton("Go somewhere").withOutlineSecondary();
+        card.getCardBody().withTextColor(BsColor.PRIMARY);
+        BsButton button = new BsButton("Go somewhere").withOutlineColor(BsColor.SECONDARY);
         card.addButton(button);
         card.setCardFooterText("2 days ago");
-        card.getCardFooter().withBgInfo();
+        card.getCardFooter().withBgColor(BsColor.INFO);
         // end-source-example
 
         addCodeExample("Color Example", card, message);
@@ -52,7 +53,7 @@ public class CardExample extends BsDemoView {
         card.setCardHeaderText("Featured");
         card.setCardTitleText("Special title treatment");
         card.setCardText("With supporting text below as a natural lead-in to additional content.");
-        BsButton button = new BsButton("Go somewhere").withPrimary();
+        BsButton button = new BsButton("Go somewhere").withColor(BsColor.PRIMARY);
         card.addButton(button);
         card.setCardFooterText("2 days ago");
         // end-source-example
@@ -65,11 +66,11 @@ public class CardExample extends BsDemoView {
         message.setText("Danger and center for card");
         // begin-source-example
         // source-example-heading: Center Example
-        BsCard card = new BsCard().withTextCenter().withBorderDanger().withTextDanger();
+        BsCard card = new BsCard().withTextCenter().withBorderColor(BsColor.DANGER).withTextColor(BsColor.DANGER);
         card.setCardHeaderText("Featured");
         card.setCardTitleText("Special title treatment");
         card.setCardText("With supporting text below as a natural lead-in to additional content.");
-        BsButton button = new BsButton("Go somewhere").withDanger();
+        BsButton button = new BsButton("Go somewhere").withColor(BsColor.DANGER);
         card.addButton(button);
         card.setCardFooterText("2 days ago");
         // end-source-example

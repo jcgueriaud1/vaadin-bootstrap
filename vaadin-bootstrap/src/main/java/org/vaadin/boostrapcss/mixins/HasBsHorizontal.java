@@ -8,27 +8,22 @@ public interface HasBsHorizontal<T> extends HasStyle {
     String getDefaultClassName();
 
     default T withHorizontal() {
-        addClassName(getDefaultClassName() + "-horizontal");
-        return (T) this;
+        return withHorizontal(BsResponsiveBP.ALL);
     }
     default T withHorizontalSm() {
-        addClassName(getDefaultClassName() + "-horizontal-sm");
-        return (T) this;
+        return withHorizontal(BsResponsiveBP.SM);
     }
     default T withHorizontalMd() {
-        addClassName(getDefaultClassName() + "-horizontal-md");
-        return (T) this;
+        return withHorizontal(BsResponsiveBP.MD);
     }
     default T withHorizontalLg() {
-        addClassName(getDefaultClassName() + "-horizontal-lg");
-        return (T) this;
+        return withHorizontal(BsResponsiveBP.LG);
     }
     default T withHorizontalXl() {
-        addClassName(getDefaultClassName() + "-horizontal-xl");
-        return (T) this;
+        return withHorizontal(BsResponsiveBP.XL);
     }
-    default T withHorizontalResponsive(BsResponsiveBP responsiveBreakpoint) {
-        addClassName(getDefaultClassName() + "-horizontal-"+responsiveBreakpoint.buildClassName());
+    default T withHorizontal(BsResponsiveBP responsiveBreakpoint) {
+        addClassName(getDefaultClassName() + "-"+ responsiveBreakpoint.buildClassName("horizontal"));
         return (T) this;
     }
 }

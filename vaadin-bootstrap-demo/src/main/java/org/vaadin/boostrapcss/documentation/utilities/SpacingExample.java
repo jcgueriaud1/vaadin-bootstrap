@@ -3,7 +3,6 @@ package org.vaadin.boostrapcss.documentation.utilities;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.demo.BsDemoView;
-import org.vaadin.boostrapcss.enums.BsColResponsiveBP;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
 import org.vaadin.boostrapcss.enums.BsResponsiveBP;
@@ -11,6 +10,7 @@ import org.vaadin.boostrapcss.layout.responsive.BsCol;
 import org.vaadin.boostrapcss.layout.responsive.BsContainer;
 import org.vaadin.boostrapcss.layout.responsive.BsRow;
 import org.vaadin.boostrapcss.utils.ColorUtil;
+import org.vaadin.boostrapcss.utils.DisplayUtil;
 import org.vaadin.boostrapcss.utils.SpacingUtil;
 
 @Route(value = SpacingExample.CURRENT_URL)
@@ -113,21 +113,39 @@ public class SpacingExample extends BsDemoView {
 
     private void createResponsiveExample() {
         Div message = createMessageDiv("responsive");
-        message.setText("You can change your margin responsively, for example you can do ");
+        message.setText("You can change your margin responsively");
         // begin-source-example
         // source-example-heading: Responsive
         BsContainer container = new BsContainer();
         BsRow bsRow = container.addRow();
         BsCol bsCol = bsRow.addCol().withSizes(12)
-                .withEqualSize(BsColResponsiveBP.LG);
-        bsCol.add("col 1");
+                .withEqualSize(BsResponsiveBP.LG);
+        Div col1 = new Div();
+        col1.setText("col 1");
+        ColorUtil.withBgColor(col1, BsColor.INFO);
+        ColorUtil.withTextColor(col1, BsColor.WHITE);
+        bsCol.add(col1);
         BsCol bsCol2 = bsRow.addCol().withSizes(12)
-                .withEqualSize(BsColResponsiveBP.LG);
-        SpacingUtil.withMargin(bsCol2, BsPosition.TOP,2);
-        SpacingUtil.withMargin(bsCol2, BsResponsiveBP.LG, BsPosition.LEFT,2);
-        bsCol2.add("col 2");
-
+                .withEqualSize(BsResponsiveBP.LG);
+        SpacingUtil.withMargin(bsCol2, BsPosition.TOP,5);
+        SpacingUtil.withMargin(bsCol2, BsResponsiveBP.LG, BsPosition.TOP,0);
+        SpacingUtil.withMargin(bsCol2, BsResponsiveBP.LG, BsPosition.LEFT,5);
+        Div col2 = new Div();
+        col2.setText("col 2");
+        ColorUtil.withBgColor(col2, BsColor.INFO);
+        ColorUtil.withTextColor(col2, BsColor.WHITE);
+        bsCol2.add(col2);
         // end-source-example
+        Div explanationLG = new Div();
+        explanationLG.setText("Layout with 2 columns with margin right on the 2nd block. Reduce the width to change it.");
+        DisplayUtil.withDisplayBlock(DisplayUtil.withDisplayNone(explanationLG),BsResponsiveBP.LG);
+        container.addRow().addCol().add(explanationLG);
+
+        Div explanationMd = new Div();
+        explanationMd.setText("Layout with 2 columns with margin top on the 2nd block. Increase the width to change it.");
+        explanationMd.addClassNames("d-lg-none");
+        DisplayUtil.withDisplayNone(explanationMd, BsResponsiveBP.LG);
+        container.addRow().addCol().add(explanationMd);
         addCodeExample("Responsive", container, message);
     }
 

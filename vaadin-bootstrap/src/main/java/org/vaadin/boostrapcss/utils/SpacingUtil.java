@@ -44,13 +44,13 @@ public class SpacingUtil {
         return container;
     }
 
-    public static <T extends HasStyle> T withMargin(T container, BsResponsiveBP responsiveBP, BsPosition position, int value) {
-        container.addClassName("m"+position.buildClassName(responsiveBP, value));
+    public static <T extends HasStyle> T withMargin(T container, BsResponsiveBP responsiveBP, BsPosition position, int size) {
+        container.addClassName("m"+position.buildClassName(responsiveBP, size));
         return container;
     }
 
-    public static <T extends HasStyle> T withPadding(T container, BsResponsiveBP responsiveBP, BsPosition position, int value) {
-        container.addClassName("p"+position.buildClassName(responsiveBP, value));
+    public static <T extends HasStyle> T withPadding(T container, BsResponsiveBP responsiveBP, BsPosition position, int size) {
+        container.addClassName("p"+position.buildClassName(responsiveBP, size));
         return container;
     }
 }

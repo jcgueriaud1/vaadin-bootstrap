@@ -13,4 +13,8 @@ public class ColorUtil {
         container.addClassName(color.buildTextClassName());
         return container;
     }
+    public static <T extends HasStyle> T withBorderColor(T container, BsColor color) {
+        container.addClassName(color.buildBorderClassName());
+        return container;
+    }
 }
