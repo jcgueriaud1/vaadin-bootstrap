@@ -1,7 +1,5 @@
 package org.vaadin.boostrapcss.demo;
 
-import com.github.appreciated.demo.helper.DemoHelperView;
-import com.github.appreciated.demo.helper.entity.CodeExample;
 import com.github.appreciated.prism.element.Language;
 import com.github.appreciated.prism.element.PrismHighlighter;
 import com.vaadin.flow.component.Component;
@@ -72,7 +70,7 @@ import java.util.Map;
 @JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
 @JavaScript("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
 @JavaScript("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
-public abstract class BsDemoView extends DemoHelperView {
+public abstract class BsDemoView extends Div {
 
     protected static final String BOOTSTRAP_DOCS_ROOT = "https://getbootstrap.com/docs/4.4/";
 
@@ -121,15 +119,15 @@ public abstract class BsDemoView extends DemoHelperView {
 
         List<SourceCodeExample> list = sourceCodeExamples.get(heading);
         if (list != null) {
-            list.stream().map(this::createSourceContent).forEach(codeExample -> {
-                PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getCode(), codeExample.getHighlightingType());
+            list.stream().forEach(codeExample -> {
+                PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getSourceCode(), Language.java);
                 BsCol bsCol = bsRow.addCol().withSizes(12, 6).withBgColor(BsColor.LIGHT);
                 bsCol.add(prismHighlighter);
                 codes.add(bsCol);
 
                 GraniteButton graniteButton = new GraniteButton("Copy code");
                 graniteButton.withColor(BsColor.PRIMARY);
-                graniteButton.setClipboard(codeExample.getCode());
+                graniteButton.setClipboard(codeExample.getSourceCode());
                 graniteButton.withSm();
 
                 BsButton hideCodeButton = new BsButton("Show/Hide code").withColor(BsColor.PRIMARY);
@@ -146,21 +144,6 @@ public abstract class BsDemoView extends DemoHelperView {
         }
         container.add(card);
         return card;
-    }
-
-    private CodeExample createSourceContent(
-            SourceCodeExample sourceCodeExample) {
-        CodeExample content;
-        String sourceString = sourceCodeExample.getSourceCode();
-        switch (sourceCodeExample.getSourceType()) {
-            case CSS:
-                content = new CodeExample(sourceString, Language.css, "css");
-                break;
-            default:
-                content = new CodeExample(sourceString, Language.java, "Java");
-                break;
-        }
-        return content;
     }
 
     public BsDemoView() {
