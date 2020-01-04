@@ -1,5 +1,6 @@
 package org.vaadin.boostrapcss.demo.util;
 
+import org.apache.log4j.Logger;
 import org.vaadin.boostrapcss.demo.BsDemoView;
 
 import java.io.BufferedReader;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public class SourceContentResolver {
+
+    private static final Logger logger = Logger.getLogger(SourceContentResolver.class);
 
     // @formatter::off
     private static final ConcurrentHashMap<Class<? extends BsDemoView>, List<SourceCodeExample>> CACHED_SOURCE_EXAMPLES = new ConcurrentHashMap<>();
@@ -49,13 +52,14 @@ public class SourceContentResolver {
      */
     public static List<SourceCodeExample> getSourceCodeExamplesForClass(
             Class<? extends BsDemoView> demoViewClass) {
+        logger.debug("getSourceCodeExamplesForClass");
         return CACHED_SOURCE_EXAMPLES.computeIfAbsent(demoViewClass,
                 SourceContentResolver::parseSourceCodeExamplesForClass);
     }
 
     private static List<SourceCodeExample> parseSourceCodeExamplesForClass(
             Class<? extends BsDemoView> demoViewClass) {
-
+        logger.debug("parseSourceCodeExamplesForClass" + demoViewClass.getName());
         String resourcePath = getResourcePath(demoViewClass);
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(

@@ -1,7 +1,5 @@
 package org.vaadin.boostrapcss.demo;
 
-import com.github.appreciated.prism.element.Language;
-import com.github.appreciated.prism.element.PrismHighlighter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -9,8 +7,10 @@ import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Pre;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.RouterLink;
+import org.apache.log4j.Logger;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.components.BsFooter;
@@ -74,6 +74,7 @@ public abstract class BsDemoView extends Div {
 
     protected static final String BOOTSTRAP_DOCS_ROOT = "https://getbootstrap.com/docs/4.4/";
 
+    private static final Logger logger = Logger.getLogger(BsDemoView.class);
 
     private BsNavBar mainNavigation;
     private final BsContainer container = new BsContainer(true);
@@ -88,8 +89,10 @@ public abstract class BsDemoView extends Div {
      * sample source code to be shown.
      */
     public void populateSources() {
+        logger.debug("populateSources");
         SourceContentResolver.getSourceCodeExamplesForClass(getClass())
                 .forEach(this::putSourceCode);
+        logger.debug("populateSources end");
     }
 
     private void putSourceCode(SourceCodeExample example) {
@@ -101,6 +104,7 @@ public abstract class BsDemoView extends Div {
 
     protected BsCard addCodeExample(String heading,
                                     Component component, Div messageText) {
+        logger.debug("addCodeExample start");
         BsCard card = new BsCard();
         SpacingUtil.withMargin(card,BsPosition.BOTTOM,2);
         BsRow headerRow = new BsRow();
@@ -116,19 +120,24 @@ public abstract class BsDemoView extends Div {
         TextUtil.withFontWeightLight(TextUtil.withFontItalic(message));
 
         bsRow.addCol().withEqualSize().add(new Div(message,component));
-
+        logger.debug("sourceCodeExamples.get" + heading);
         List<SourceCodeExample> list = sourceCodeExamples.get(heading);
+        logger.debug("sourceCodeExamples.end");
         if (list != null) {
             list.stream().forEach(codeExample -> {
-                PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getSourceCode(), Language.java);
+                logger.debug("prismHighlighter ");
+                // very slow on the server, I removed this and replaced by simple Pr, try the js library directly
+              //  PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getSourceCode(), Language.java);
                 BsCol bsCol = bsRow.addCol().withSizes(12, 6).withBgColor(BsColor.LIGHT);
-                bsCol.add(prismHighlighter);
+                bsCol.add(new Pre(codeExample.getSourceCode()));
                 codes.add(bsCol);
 
+                logger.debug("graniteButton");
                 GraniteButton graniteButton = new GraniteButton("Copy code");
                 graniteButton.withColor(BsColor.PRIMARY);
                 graniteButton.setClipboard(codeExample.getSourceCode());
                 graniteButton.withSm();
+                logger.debug("graniteButton");
 
                 BsButton hideCodeButton = new BsButton("Show/Hide code").withColor(BsColor.PRIMARY);
                 hideCodeButton.withSm();
