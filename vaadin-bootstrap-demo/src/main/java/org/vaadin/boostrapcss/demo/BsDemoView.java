@@ -2,20 +2,22 @@ package org.vaadin.boostrapcss.demo;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Pre;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.InitialPageSettings;
+import com.vaadin.flow.server.PageConfigurator;
 import org.apache.log4j.Logger;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.components.BsFooter;
 import org.vaadin.boostrapcss.components.BsNavBar;
 import org.vaadin.boostrapcss.components.BsParagraph;
+import org.vaadin.boostrapcss.demo.theme.BsTheme;
 import org.vaadin.boostrapcss.demo.util.Code;
 import org.vaadin.boostrapcss.demo.util.GraniteButton;
 import org.vaadin.boostrapcss.demo.util.SourceCodeExample;
@@ -67,11 +69,11 @@ import java.util.Map;
 
 @Tag("div")
 @CssImport("./demo.css")
-@StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
-@JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
-@JavaScript("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
-@JavaScript("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
-public abstract class BsDemoView extends Div {
+//@StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+//@JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
+//@JavaScript("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
+//@JavaScript("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
+public abstract class BsDemoView extends Div implements PageConfigurator {
 
     protected static final String BOOTSTRAP_DOCS_ROOT = "https://getbootstrap.com/docs/4.4/";
 
@@ -84,6 +86,8 @@ public abstract class BsDemoView extends Div {
     private final List<Component> codes = new ArrayList<>();
 
     private final Map<String, List<SourceCodeExample>> sourceCodeExamples = new HashMap<>();
+
+    private Anchor themePage;
 
     /**
      * When called the view should populate the given SourceContainer with
@@ -174,16 +178,51 @@ public abstract class BsDemoView extends Div {
         this();
         if (bootstrapLink != null) {
             BsContainer container = new BsContainer(true);
-            Anchor anchor = new Anchor(bootstrapLink, "You can find more example in the official documentation");
+            Anchor anchor = new Anchor(bootstrapLink, "You can find more examples in the official documentation");
             anchor.setTarget("_blank");
             ColorUtil.withTextColor(anchor,BsColor.LIGHT);
-            container.add(anchor);
+            BsRow bsRow = container.addRow();
+            BsCol bsCol = bsRow.addCol();
+            bsCol.withEqualSize().add(anchor);
+            bsRow.addCol().withAutoSize().add(buildThemeSwitcher());
             footer.add(container);
             footer.withFixedBottom();
-            SpacingUtil.withPadding(footer,BsPosition.VERTICAL,2);
+            SpacingUtil.withPadding(bsCol, BsPosition.TOP,2);
+
+            BsCol bsCol2 = bsRow.addCol().withAutoSize();
+            SpacingUtil.withPadding(bsCol2, BsPosition.TOP,2);
+            themePage = new Anchor("", "Go to theme page");
+            themePage.setTarget("_blank");
+            ColorUtil.withTextColor(themePage, BsColor.LIGHT);
+            bsCol2.add(themePage);
             footer.withBgColor(BsColor.INFO);
             add(footer);
+
         }
+    }
+
+    private Component buildThemeSwitcher() {
+        ComboBox<BsTheme> themes = new ComboBox<>();
+        themes.setPlaceholder("Choose your theme");
+        ColorUtil.withTextColor(themes, BsColor.LIGHT);
+        themes.setItems(BsTheme.values());
+        themes.addValueChangeListener(event -> {
+            if (event.getValue() != null && event.isFromClient()) {
+                getUI().ifPresent(ui -> {
+                    ui.getSession().getSession().setAttribute("theme", event.getValue());
+                    ui.getPage().reload();
+                });
+            }
+        });
+        themes.addAttachListener(event -> {
+            getUI().ifPresent(ui -> {
+                Object chosenTheme = ui.getSession().getSession().getAttribute("theme");
+                BsTheme theme = (chosenTheme instanceof BsTheme)?(BsTheme)chosenTheme:BsTheme.DEFAULT;
+                themes.setValue(theme);
+                themePage.setHref(theme.getThemeLink());
+            });
+        });
+        return themes;
     }
 
     protected void initView() {
@@ -220,4 +259,35 @@ public abstract class BsDemoView extends Div {
         return message;
     }
 
+    @Override
+    public void configurePage(InitialPageSettings settings) {
+        Object theme = settings.getRequest().getWrappedSession().getAttribute("theme");
+        if (theme instanceof BsTheme) {
+            logger.debug("theme is set in the session" + theme);
+            setTheme(settings, (BsTheme) theme);
+        } else {
+            logger.debug("theme is not set in the session");
+            // default
+            setTheme(settings, BsTheme.DEFAULT);}
+    }
+
+    private void setTheme(InitialPageSettings settings, BsTheme theme) {
+        theme.getStylesheets().forEach(s -> addStylesheet(settings, s));
+        theme.getJavascripts().forEach(s -> addJavascript(settings, s));
+    }
+
+    private void addStylesheet(InitialPageSettings settings, String stylesheet) {
+        HashMap<String, String> attributes = new HashMap<>();
+        attributes.put("rel", "stylesheet");
+        attributes.put("type", "text/css");
+        settings.addLink(stylesheet, attributes);
+
+    }
+    private void addJavascript(InitialPageSettings settings, String javascript) {
+        settings.addInlineWithContents(
+                "<script type=\"text/javascript\" defer=\"\" src=\"" +
+                        javascript +
+                        "\"></script>",  InitialPageSettings.WrapMode.NONE);
+
+    }
 }
