@@ -16,6 +16,7 @@ import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.components.BsFooter;
 import org.vaadin.boostrapcss.components.BsNavBar;
 import org.vaadin.boostrapcss.components.BsParagraph;
+import org.vaadin.boostrapcss.demo.util.Code;
 import org.vaadin.boostrapcss.demo.util.GraniteButton;
 import org.vaadin.boostrapcss.demo.util.SourceCodeExample;
 import org.vaadin.boostrapcss.demo.util.SourceContentResolver;
@@ -104,7 +105,6 @@ public abstract class BsDemoView extends Div {
 
     protected BsCard addCodeExample(String heading,
                                     Component component, Div messageText) {
-        logger.debug("addCodeExample start");
         BsCard card = new BsCard();
         SpacingUtil.withMargin(card,BsPosition.BOTTOM,2);
         BsRow headerRow = new BsRow();
@@ -120,31 +120,38 @@ public abstract class BsDemoView extends Div {
         TextUtil.withFontWeightLight(TextUtil.withFontItalic(message));
 
         bsRow.addCol().withEqualSize().add(new Div(message,component));
-        logger.debug("sourceCodeExamples.get" + heading);
         List<SourceCodeExample> list = sourceCodeExamples.get(heading);
-        logger.debug("sourceCodeExamples.end");
         if (list != null) {
             list.stream().forEach(codeExample -> {
                 logger.debug("prismHighlighter ");
                 // very slow on the server, I removed this and replaced by simple Pr, try the js library directly
               //  PrismHighlighter prismHighlighter = new PrismHighlighter(codeExample.getSourceCode(), Language.java);
                 BsCol bsCol = bsRow.addCol().withSizes(12, 6).withBgColor(BsColor.LIGHT);
-                bsCol.add(new Pre(codeExample.getSourceCode()));
+                Code code = new Code();
+                code.setText(codeExample.getSourceCode());
+                code.addClassName("language-java");
+                bsCol.add(new Pre(code));
                 codes.add(bsCol);
-
-                logger.debug("graniteButton");
+                bsCol.getElement().getNode().runWhenAttached(ui -> ui
+                        .beforeClientResponse(this, context -> {
+                            Object codeVisible = ui.getSession().getAttribute("code-visible");
+                            if (codeVisible instanceof Boolean) {
+                                bsCol.setVisible((Boolean)codeVisible);
+                            }
+                        }));
                 GraniteButton graniteButton = new GraniteButton("Copy code");
                 graniteButton.withColor(BsColor.PRIMARY);
                 graniteButton.setClipboard(codeExample.getSourceCode());
                 graniteButton.withSm();
-                logger.debug("graniteButton");
 
                 BsButton hideCodeButton = new BsButton("Show/Hide code").withColor(BsColor.PRIMARY);
                 hideCodeButton.withSm();
                 hideCodeButton.addClickListener(event -> {
                     boolean highlighterVisible = bsCol.isVisible();
-                    codes.forEach(code ->
-                                code.setVisible(!highlighterVisible)
+                    getUI().ifPresent(ui ->
+                            ui.getSession().setAttribute("code-visible", !highlighterVisible));
+                    codes.forEach(codeDiv ->
+                                codeDiv.setVisible(!highlighterVisible)
                     );
                 });
                 SpacingUtil.withMargin(hideCodeButton, BsPosition.RIGHT,2);
