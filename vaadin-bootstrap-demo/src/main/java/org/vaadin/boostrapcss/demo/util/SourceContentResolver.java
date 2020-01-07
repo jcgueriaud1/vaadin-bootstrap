@@ -1,6 +1,7 @@
 package org.vaadin.boostrapcss.demo.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.vaadin.boostrapcss.demo.BsDemoView;
 
 import java.io.BufferedReader;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
  */
 public class SourceContentResolver {
 
-    private static final Logger logger = Logger.getLogger(SourceContentResolver.class);
+    private static final Logger logger = LoggerFactory.getLogger(SourceContentResolver.class);
 
     // @formatter::off
     private static final ConcurrentHashMap<Class<? extends BsDemoView>, List<SourceCodeExample>> CACHED_SOURCE_EXAMPLES = new ConcurrentHashMap<>();

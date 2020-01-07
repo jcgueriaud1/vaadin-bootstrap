@@ -11,7 +11,8 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsCard;
 import org.vaadin.boostrapcss.components.BsFooter;
@@ -48,7 +49,7 @@ public abstract class BsDemoView extends Div implements PageConfigurator {
 
     protected static final String BOOTSTRAP_DOCS_ROOT = "https://getbootstrap.com/docs/4.4/";
 
-    private static final Logger logger = Logger.getLogger(BsDemoView.class);
+    private static final Logger logger = LoggerFactory.getLogger(BsDemoView.class);
 
     protected BsNavBar mainNavigation;
     protected BsNavBar sideNavigation;
