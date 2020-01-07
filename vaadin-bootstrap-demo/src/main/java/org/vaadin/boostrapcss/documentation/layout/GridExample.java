@@ -4,14 +4,14 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsCard;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsResponsiveBP;
 import org.vaadin.boostrapcss.enums.BsVerticalAlign;
 import org.vaadin.boostrapcss.layout.responsive.BsContainer;
 import org.vaadin.boostrapcss.layout.responsive.BsRow;
 
 @Route(value = GridExample.CURRENT_URL)
-public class GridExample extends BsDemoView {
+public class GridExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "layout/grid/";
 

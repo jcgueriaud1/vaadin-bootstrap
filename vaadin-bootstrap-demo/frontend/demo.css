@@ -16,3 +16,24 @@
     background-color: rgba(86,61,124,.15);
     margin-left: 0.25rem;
 }
+/** Side bar **/
+@media (min-width: 992px) {
+    .sideBar.navbar-expand-lg .navbar-nav {
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .sideBar .navbar-brand {
+        display: none;
+    }
+
+    .sideBar .navbar-nav {
+        width: 100%;
+    }
+    .sideBar.navbar {
+        height: 100%;
+        align-items: start;
+        min-height: 100vh;
+    }
+}
+

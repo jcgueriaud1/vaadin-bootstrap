@@ -3,11 +3,11 @@ package org.vaadin.boostrapcss.documentation.components;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsButton;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = ButtonExample.CURRENT_URL)
-public class ButtonExample extends BsDemoView {
+public class ButtonExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/buttons/";
 

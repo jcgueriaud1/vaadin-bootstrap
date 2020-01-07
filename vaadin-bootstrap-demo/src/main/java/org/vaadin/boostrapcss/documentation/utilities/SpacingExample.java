@@ -2,7 +2,7 @@ package org.vaadin.boostrapcss.documentation.utilities;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
 import org.vaadin.boostrapcss.enums.BsResponsiveBP;
@@ -14,7 +14,7 @@ import org.vaadin.boostrapcss.utils.DisplayUtil;
 import org.vaadin.boostrapcss.utils.SpacingUtil;
 
 @Route(value = SpacingExample.CURRENT_URL)
-public class SpacingExample extends BsDemoView {
+public class SpacingExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "utilities/spacing/";
 

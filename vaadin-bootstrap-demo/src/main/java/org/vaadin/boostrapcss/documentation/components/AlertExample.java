@@ -5,11 +5,11 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsAlert;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = AlertExample.CURRENT_URL)
-public class AlertExample extends BsDemoView {
+public class AlertExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/alerts/";
 

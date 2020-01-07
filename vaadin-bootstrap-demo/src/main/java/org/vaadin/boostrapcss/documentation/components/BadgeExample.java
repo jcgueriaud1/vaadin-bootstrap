@@ -4,11 +4,11 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsBadge;
 import org.vaadin.boostrapcss.components.BsButton;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = BadgeExample.CURRENT_URL)
-public class BadgeExample extends BsDemoView {
+public class BadgeExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/badge/";
 

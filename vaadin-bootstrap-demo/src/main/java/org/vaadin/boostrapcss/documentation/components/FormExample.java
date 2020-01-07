@@ -12,10 +12,10 @@ import org.vaadin.boostrapcss.enums.BsResponsiveBP;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.layout.form.BsFormRow;
 import org.vaadin.boostrapcss.layout.responsive.BsContainer;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 
 @Route(value = FormExample.CURRENT_URL)
-public class FormExample extends BsDemoView {
+public class FormExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/forms/";
 

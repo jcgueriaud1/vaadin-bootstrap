@@ -4,12 +4,12 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsListGroup;
 import org.vaadin.boostrapcss.components.BsListItem;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsResponsiveBP;
 
 @Route(value = ListGroupExample.CURRENT_URL)
-public class ListGroupExample extends BsDemoView {
+public class ListGroupExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/list-group/";
 

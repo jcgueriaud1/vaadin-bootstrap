@@ -24,21 +24,6 @@ import org.vaadin.boostrapcss.demo.util.SourceCodeExample;
 import org.vaadin.boostrapcss.demo.util.SourceContentResolver;
 import org.vaadin.boostrapcss.documentation.HomeExample;
 import org.vaadin.boostrapcss.documentation.components.AlertExample;
-import org.vaadin.boostrapcss.documentation.components.BadgeExample;
-import org.vaadin.boostrapcss.documentation.components.BreadcrumbExample;
-import org.vaadin.boostrapcss.documentation.components.ButtonExample;
-import org.vaadin.boostrapcss.documentation.components.ButtonGroupExample;
-import org.vaadin.boostrapcss.documentation.components.CardExample;
-import org.vaadin.boostrapcss.documentation.components.CollapseExample;
-import org.vaadin.boostrapcss.documentation.components.DropdownExample;
-import org.vaadin.boostrapcss.documentation.components.FormExample;
-import org.vaadin.boostrapcss.documentation.components.ListGroupExample;
-import org.vaadin.boostrapcss.documentation.components.NavBarExample;
-import org.vaadin.boostrapcss.documentation.layout.GridExample;
-import org.vaadin.boostrapcss.documentation.utilities.BorderExample;
-import org.vaadin.boostrapcss.documentation.utilities.ColorExample;
-import org.vaadin.boostrapcss.documentation.utilities.DisplayExample;
-import org.vaadin.boostrapcss.documentation.utilities.SpacingExample;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
 import org.vaadin.boostrapcss.layout.responsive.BsCol;
@@ -53,20 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-//@StyleSheet("https://use.fontawesome.com/releases/v5.8.2/css/all.css")
-//@StyleSheet("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css")
-//@StyleSheet("https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css")
-//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
-//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js")
-//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js")
-//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js")
-
-//@StyleSheet("https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/css/coreui.min.css")
-//@JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
-//@JavaScript("https://unpkg.com/@coreui/coreui@3.0.0-beta.1/dist/js/coreui.min.js")
-//@JavaScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js")
-
 @Tag("div")
 @CssImport("./demo.css")
 //@StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
@@ -79,15 +50,63 @@ public abstract class BsDemoView extends Div implements PageConfigurator {
 
     private static final Logger logger = Logger.getLogger(BsDemoView.class);
 
-    private BsNavBar mainNavigation;
+    protected BsNavBar mainNavigation;
+    protected BsNavBar sideNavigation;
     private final BsContainer container = new BsContainer(true);
     private final BsFooter footer = new BsFooter();
+    private final BsCol content;
 
     private final List<Component> codes = new ArrayList<>();
 
     private final Map<String, List<SourceCodeExample>> sourceCodeExamples = new HashMap<>();
 
     private Anchor themePage;
+
+
+    public BsDemoView() {
+        BsRow bsRow = container.addRow();
+
+        createNavBar();
+        add(mainNavigation);
+        createSideBar();
+        BsCol bsCol = bsRow.addCol().withSizes(12, 12, 12,3).withBgColor(BsColor.LIGHT);
+        SpacingUtil.withPadding(bsCol,BsPosition.ALL,0);
+        bsCol.add(sideNavigation);
+        content = bsRow.addCol().withSizes(12, 12, 12, 9);
+        SpacingUtil.withPadding(content,BsPosition.ALL,0);
+        populateSources();
+        initView();
+        getElement().getStyle().clear();
+        add(container);
+    }
+
+    public BsDemoView(String bootstrapLink) {
+        this();
+        if (bootstrapLink != null) {
+            BsContainer container = new BsContainer(true);
+            Anchor anchor = new Anchor(bootstrapLink, "You can find more examples in the official documentation");
+            anchor.setTarget("_blank");
+            ColorUtil.withTextColor(anchor,BsColor.LIGHT);
+            BsRow bsRow = container.addRow();
+            BsCol bsCol = bsRow.addCol();
+            bsCol.withEqualSize().add(anchor);
+            bsRow.addCol().withAutoSize().add(buildThemeSwitcher());
+            footer.add(container);
+            footer.withFixedBottom();
+            SpacingUtil.withPadding(bsCol, BsPosition.TOP,2);
+
+            BsCol bsCol2 = bsRow.addCol().withAutoSize();
+            SpacingUtil.withPadding(bsCol2, BsPosition.TOP,2);
+            themePage = new Anchor("", "Go to theme page");
+            themePage.setTarget("_blank");
+            ColorUtil.withTextColor(themePage, BsColor.LIGHT);
+            bsCol2.add(themePage);
+            footer.withBgColor(BsColor.INFO);
+            add(footer);
+
+        }
+    }
+
 
     /**
      * When called the view should populate the given SourceContainer with
@@ -162,43 +181,8 @@ public abstract class BsDemoView extends Div implements PageConfigurator {
                 headerRow.addCol().withAutoSize().add(new Div(hideCodeButton , graniteButton));
             });
         }
-        container.add(card);
+        content.add(card);
         return card;
-    }
-
-    public BsDemoView() {
-        createNavBar();
-        add(container);
-        populateSources();
-        initView();
-        getElement().getStyle().clear();
-    }
-
-    public BsDemoView(String bootstrapLink) {
-        this();
-        if (bootstrapLink != null) {
-            BsContainer container = new BsContainer(true);
-            Anchor anchor = new Anchor(bootstrapLink, "You can find more examples in the official documentation");
-            anchor.setTarget("_blank");
-            ColorUtil.withTextColor(anchor,BsColor.LIGHT);
-            BsRow bsRow = container.addRow();
-            BsCol bsCol = bsRow.addCol();
-            bsCol.withEqualSize().add(anchor);
-            bsRow.addCol().withAutoSize().add(buildThemeSwitcher());
-            footer.add(container);
-            footer.withFixedBottom();
-            SpacingUtil.withPadding(bsCol, BsPosition.TOP,2);
-
-            BsCol bsCol2 = bsRow.addCol().withAutoSize();
-            SpacingUtil.withPadding(bsCol2, BsPosition.TOP,2);
-            themePage = new Anchor("", "Go to theme page");
-            themePage.setTarget("_blank");
-            ColorUtil.withTextColor(themePage, BsColor.LIGHT);
-            bsCol2.add(themePage);
-            footer.withBgColor(BsColor.INFO);
-            add(footer);
-
-        }
     }
 
     private Component buildThemeSwitcher() {
@@ -229,27 +213,17 @@ public abstract class BsDemoView extends Div implements PageConfigurator {
 
     }
 
-    private void createNavBar() {
+    protected void createNavBar() {
         mainNavigation = new BsNavBar("mainNav").withNavBarDark().withBgColor(BsColor.DARK).withStickyTop();
         mainNavigation.addNavLink(new RouterLink("Home", HomeExample.class));
-        mainNavigation.addNavLink(new RouterLink("Alerts", AlertExample.class));
-        mainNavigation.addNavLink(new RouterLink("Badge", BadgeExample.class));
-        mainNavigation.addNavLink(new RouterLink("Breadcrumb", BreadcrumbExample.class));
-        mainNavigation.addNavLink(new RouterLink("Buttons", ButtonExample.class));
-        mainNavigation.addNavLink(new RouterLink("Button Group", ButtonGroupExample.class));
-        mainNavigation.addNavLink(new RouterLink("Card", CardExample.class));
-        mainNavigation.addNavLink(new RouterLink("Collapse", CollapseExample.class));
-        mainNavigation.addNavLink(new RouterLink("Dropdown", DropdownExample.class));
-        mainNavigation.addNavLink(new RouterLink("NavBar", NavBarExample.class));
-        mainNavigation.addNavLink(new RouterLink("ListGroup", ListGroupExample.class));
-        mainNavigation.addNavLink(new RouterLink("Form", FormExample.class));
-        mainNavigation.addNavLink(new RouterLink("Grid", GridExample.class));
-        mainNavigation.addNavLink(new RouterLink("Color", ColorExample.class));
-        mainNavigation.addNavLink(new RouterLink("Spacing", SpacingExample.class));
-        mainNavigation.addNavLink(new RouterLink("Display", DisplayExample.class));
-        mainNavigation.addNavLink(new RouterLink("Borders", BorderExample.class));
+        mainNavigation.addNavLink(new RouterLink("Components", AlertExample.class));
         mainNavigation.withNavBrandText("BootstrapDocs");
-        add(mainNavigation);
+    }
+
+
+
+    protected void createSideBar() {
+        sideNavigation = new BsNavBar("sideBar").withNavBarLight();
     }
 
     protected Div createMessageDiv(String id) {

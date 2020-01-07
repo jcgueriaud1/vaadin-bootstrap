@@ -2,7 +2,7 @@ package org.vaadin.boostrapcss.documentation.utilities;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
 import org.vaadin.boostrapcss.layout.responsive.BsCol;
@@ -11,7 +11,7 @@ import org.vaadin.boostrapcss.layout.responsive.BsRow;
 import org.vaadin.boostrapcss.utils.BorderUtil;
 
 @Route(value = BorderExample.CURRENT_URL)
-public class BorderExample extends BsDemoView {
+public class BorderExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "utilities/borders/";
 

@@ -9,10 +9,10 @@ import org.vaadin.boostrapcss.enums.BsColor;
 import org.vaadin.boostrapcss.enums.BsPosition;
 import org.vaadin.boostrapcss.utils.AriaUtil;
 import org.vaadin.boostrapcss.utils.SpacingUtil;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 
 @Route(value = ButtonGroupExample.CURRENT_URL)
-public class ButtonGroupExample extends BsDemoView {
+public class ButtonGroupExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/button-group/";
 

@@ -7,11 +7,11 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.router.Route;
 import org.vaadin.boostrapcss.components.BsButton;
 import org.vaadin.boostrapcss.components.BsDropdownMenu;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.enums.BsColor;
 
 @Route(value = DropdownExample.CURRENT_URL)
-public class DropdownExample extends BsDemoView {
+public class DropdownExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/dropdowns/";
 

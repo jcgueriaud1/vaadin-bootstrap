@@ -4,11 +4,11 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import org.vaadin.boostrapcss.components.BsBreadcrumb;
-import org.vaadin.boostrapcss.demo.BsDemoView;
+import org.vaadin.boostrapcss.demo.BsComponentDemoView;
 import org.vaadin.boostrapcss.documentation.HomeExample;
 
 @Route(value = BreadcrumbExample.CURRENT_URL)
-public class BreadcrumbExample extends BsDemoView {
+public class BreadcrumbExample extends BsComponentDemoView {
 
     public static final String CURRENT_URL = "components/breadcrumb/";
 
