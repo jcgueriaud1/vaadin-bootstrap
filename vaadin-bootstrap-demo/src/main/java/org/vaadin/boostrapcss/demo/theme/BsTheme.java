@@ -71,7 +71,7 @@ public enum BsTheme implements Serializable {
             stylesheets.add("./assets/css/nucleo-icons.css");
             stylesheets.add("./assets/css/nucleo-svg.css");
             stylesheets.add("./assets/css/font-awesome.css");
-            stylesheets.add("../assets/css/argon-design-system.css?v=1.2.0");
+            stylesheets.add("./assets/css/argon-design-system.css?v=1.2.0");
             return stylesheets;
         }
         public List<String> getJavascripts() {
