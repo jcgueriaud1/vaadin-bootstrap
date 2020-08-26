@@ -62,6 +62,36 @@ public enum BsTheme implements Serializable {
         public String getThemeLink() {
             return "https://mdbootstrap.com/";
         }
+    },
+    ARGON("argon", "Argon Design System"){
+
+        public List<String> getStylesheets() {
+            List<String> stylesheets = new ArrayList<>();
+
+            stylesheets.add("./assets/css/nucleo-icons.css");
+            stylesheets.add("./assets/css/nucleo-svg.css");
+            stylesheets.add("./assets/css/font-awesome.css");
+            stylesheets.add("../assets/css/argon-design-system.css?v=1.2.0");
+            return stylesheets;
+        }
+        public List<String> getJavascripts() {
+            List<String> javascripts = new ArrayList<>();
+            javascripts.add("./assets/js/core/jquery.min.js");
+            javascripts.add("./assets/js/core/popper.min.js");
+            javascripts.add("./assets/js/core/bootstrap.min.js");
+            javascripts.add("./assets/js/plugins/perfect-scrollbar.jquery.min.js");
+            javascripts.add("./assets/js/plugins/bootstrap-switch.js");
+            javascripts.add("./assets/js/plugins/nouislider.min.js");
+            javascripts.add("./assets/js/plugins/moment.min.js");
+            javascripts.add("./assets/js/plugins/datetimepicker.js");
+            javascripts.add("./assets/js/plugins/bootstrap-datepicker.min.js");
+            javascripts.add("./assets/js/argon-design-system.min.js?v=1.2.0");
+            return javascripts;
+        }
+
+        public String getThemeLink() {
+            return "https://demos.creative-tim.com/argon-design-system/";
+        }
     };
 
     private String id;

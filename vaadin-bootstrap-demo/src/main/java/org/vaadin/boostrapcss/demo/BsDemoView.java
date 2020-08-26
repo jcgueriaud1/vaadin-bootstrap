@@ -41,10 +41,6 @@ import java.util.Map;
 
 @Tag("div")
 @CssImport("./demo.css")
-//@StyleSheet("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
-//@JavaScript("https://code.jquery.com/jquery-3.4.1.slim.min.js")
-//@JavaScript("https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
-//@JavaScript("https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
 public abstract class BsDemoView extends Div implements PageConfigurator {
 
     protected static final String BOOTSTRAP_DOCS_ROOT = "https://getbootstrap.com/docs/4.4/";

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>vaadin-boostrap-demo</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Vaadin Boostrap Demo</name>
     <packaging>war</packaging>
     <parent>
         <groupId>org.vaadin.boostrapcss</groupId>
         <artifactId>vaadin-bootstrap-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <organization>
         <name>Jean-Christophe Gueriaud</name>
