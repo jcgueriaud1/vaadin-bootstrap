@@ -36,6 +36,6 @@ jobs:
         # scp password
         password: ${{ secrets.APP_FI_PASSWORD }}
         # target path on the server
-        target: vaadin-bootstrap-demo/target/vaadin-boostrap-demo*.war
+        target: webapps/
         # scp file list
-        source: webapps/vaadin-boostrap-demo.war
+        source: bootstrap-for-vaadin-demo/target/vaadin-bootstrap-demo-*.war
