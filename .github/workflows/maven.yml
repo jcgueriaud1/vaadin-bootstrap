@@ -22,3 +22,20 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package -PproductionMode --file pom.xml
+    - name: SCP Command to Transfer Files
+      # You may pin to the exact commit or the version.
+      # uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00
+      uses: appleboy/scp-action@v0.1.1
+      with:
+        # scp remote host
+        host: ${{ secrets.APP_FI_HOST }}
+        # scp remote port
+        port: ${{ secrets.APP_FI_PORT }}
+        # scp username
+        username: ${{ secrets.APP_FI_USER }}
+        # scp password
+        password: ${{ secrets.APP_FI_PASSWORD }}
+        # target path on the server
+        target: vaadin-bootstrap-demo/target/vaadin-boostrap-demo*.war
+        # scp file list
+        source: webapps/vaadin-boostrap-demo.war
