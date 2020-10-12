@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vaadin.bootstrapcss</groupId>
-    <artifactId>vaadin-bootstrap-demo</artifactId>
+    <artifactId>bootstrap-for-vaadin-demo</artifactId>
     <version>1.0.0</version>
 
     <name>Vaadin Bootstrap Demo</name>
@@ -14,7 +14,7 @@
         <name>Jean-Christophe Gueriaud</name>
     </organization>
     <properties>
-        <vaadin.version>14.3.1</vaadin.version>
+        <vaadin.version>14.4.0</vaadin.version>
         <bootstrap-for-vaadin.version>1.0.0</bootstrap-for-vaadin.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

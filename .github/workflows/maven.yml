@@ -21,9 +21,9 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package -PproductionMode --file pom.xml
+      run: mvn -B package -Pproduction --file pom.xml
     - name: Rename the war and remove the version
-      run: mv bootstrap-for-vaadin-demo/target/vaadin-bootstrap-demo*.war vaadin-bootstrap-demo.war 
+      run: mv bootstrap-for-vaadin-demo/target/bootstrap-for-vaadin-demo*.war bootstrap-for-vaadin-demo.war
     - name: SCP to the server
       # You may pin to the exact commit or the version.
       # uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00
@@ -40,4 +40,4 @@ jobs:
         # target path on the server
         target: webapps/
         # scp file list
-        source: vaadin-bootstrap-demo.war
+        source: bootstrap-for-vaadin-demo.war
