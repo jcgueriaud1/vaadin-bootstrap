@@ -41,3 +41,4 @@ jobs:
         target: webapps/
         # scp file list
         source: bootstrap-for-vaadin-demo.war
+        fingerprint: ${{ secrets.APP_FI_SHA256 }}
