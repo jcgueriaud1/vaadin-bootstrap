@@ -23,7 +23,6 @@ public class BsCard extends Div implements HasBsTextColor<BsCard>, HasBsTextAlig
         cardHeader.setVisible(false);
         add(cardBody = new BsDiv());
         cardBody.addClassName("card-body");
-        cardBody.setVisible(false);
 
         cardBody.add(cardTitle = new BsH5());
         cardTitle.addClassName("card-title");

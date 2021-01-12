@@ -1,5 +1,6 @@
 package org.vaadin.bootstrapcss.documentation.components;
 
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
 import org.vaadin.bootstrapcss.components.BsButton;
@@ -29,7 +30,9 @@ public class ButtonExample extends BsComponentDemoView {
         // begin-source-example
         // source-example-heading: Basic Example
         Div layout = new Div();
-        layout.add(new BsButton("Primary").withColor(BsColor.PRIMARY));
+        BsButton primary = new BsButton("Primary").withColor(BsColor.PRIMARY);
+        primary.addClickListener(e -> new Dialog(new BsButton("Secondary").withColor(BsColor.SECONDARY)).open());
+        layout.add(primary);
         layout.add(new BsButton("Secondary").withColor(BsColor.SECONDARY));
         layout.add(new BsButton("Success").withColor(BsColor.SUCCESS));
         layout.add(new BsButton("Danger").withColor(BsColor.DANGER));
